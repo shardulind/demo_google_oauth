@@ -1,0 +1,16 @@
+Google login Demo - Using flask - authlib
+ 
+{% if user %}
+<pre>
+<p>
+{
+Name : {{ user.name }} <br>
+Email : {{ user.email }}
+Picture_url: {{user.picture}}
+}
+</p>
+</pre>
+<a href="/logout">logout</a>
+{% else %}
+<a href="/login">login</a>
+{% endif %}
