@@ -4,7 +4,8 @@ Google login Demo - Using flask - authlib
 <pre>
 <p>
 {
-Name : {{ user.name }} <br>
+First Name : {{ user.given_name }} <br>
+Last Name: {{user.family_name}} <br>
 Email : {{ user.email }}
 Picture_url: {{user.picture}}
 }
@@ -12,5 +13,6 @@ Picture_url: {{user.picture}}
 </pre>
 <a href="/logout">logout</a>
 {% else %}
-<a href="/login">login</a>
+<a href="/login/google">Google login</a>
+<a href="/login/fb"> FB Login</a>
 {% endif %}
