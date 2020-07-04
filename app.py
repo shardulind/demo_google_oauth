@@ -2,7 +2,7 @@
 from flask import Flask, url_for, session, jsonify, request
 from flask import render_template, redirect
 from werkzeug.security import generate_password_hash, check_password_hash
-
+ 
 #third party library
 from authlib.integrations.flask_client import OAuth
 from flask_mysqldb import MySQL
@@ -24,7 +24,6 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'alohmora'
 app.config['MYSQL_DB'] = 'login_func'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-
 
 
 #Google login configuration
@@ -80,7 +79,7 @@ def does_user_exist(email_id):
     query = ''' select * from user where user.email = '%s' '''%email_id
     print(query)
     cur.execute(query)
-    rowdata = cur.fetchall()
+    cur.fetchall()
     print(cur.rowcount)
 
     if cur.rowcount == 0:
@@ -165,12 +164,7 @@ def auth():
     cur = mysql.connection.cursor()
     query = ''' insert into user (uuid, fname, lname, email, auth_source, is_verified) values (uuid(), %s,%s,%s,%s, 0);'''
     val = [user['given_name'],user['family_name'],user['email'],'google']
-    cur.execute(query,val)ith SHA128
-    hashed_password = generate_password_hash(data['password'],method='sha1')
-    
-#DEBUG purpose print
-    print("DEBUG @registration-->  hashed password SHA1:" + hashed_password)
-
+    cur.execute(query,val)
     #creating cursor for in
 
 #DEBUG purpose print
@@ -190,7 +184,6 @@ def authorize():
     user_info = resp.json()
     session['profile'] = user_info
     print("authorze: " + str(user_info))
-#    session.permanent = True  # make the session permanant so it keeps existing after broweser gets closed
     return redirect('/')
 
 
@@ -204,8 +197,7 @@ def logout():
     for key in list(session.keys()):
         session.pop(key)
     return redirect('/')
-    # session.pop('user', None)
-    # return redirect('/')
+
 
 
 
